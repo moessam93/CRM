@@ -1,3 +1,2 @@
-/node_modules
-.env
-/models
+/crm-backend/node_modules
+/crm-backend/.env

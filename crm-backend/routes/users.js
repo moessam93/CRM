@@ -35,11 +35,11 @@ router.route('/logout').get((req,res,next)=>{
 })
 
 router.route('/login-success').get((req,res,next)=>{
-    res.send('<p>Successfully logged in</p>')
+    res.render('success-login',{username:req.user.first_name});
 })
 
 router.route('/login-failure').get((req,res,next)=>{
-    res.send('<p>Wrong password</p>');
+    res.send('<p>Wrong email or password</p>');
 })
 
 module.exports = router;

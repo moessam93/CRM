@@ -14,15 +14,18 @@ const verifyCallback = (email, password, done) => {
             done(err);
         }
         if (result.length == 0) {
+            console.log("No user with the email");
             done(null, false);
-        }
-        const isValid = validPassword(password, result[0].hash_password, result[0].salt);
-        const user = { id: result[0].id, email: result[0].email, hash_password: result[0].hash_password, salt: result[0].salt };
-        if (isValid) {
-            done(null, user);
         }
         else {
-            done(null, false);
+            const isValid = validPassword(password, result[0].hash_password, result[0].salt);
+            const user = { id: result[0].id, email: result[0].email, hash_password: result[0].hash_password, salt: result[0].salt };
+            if (isValid) {
+                done(null, user);
+            }
+            else {
+                done(null, false);
+            }
         }
     })
 }
