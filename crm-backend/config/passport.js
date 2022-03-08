@@ -49,7 +49,7 @@ const isAuth = (req, res, next) => {
         next();
     }
     else {
-        res.redirect('/notAuthorized');
+        res.send('Unauthorized');
     }
 }
 

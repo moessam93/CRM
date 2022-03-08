@@ -23,7 +23,7 @@ const getDealByID = (req,res)=>{
 const createDeal = (req,res)=>{
     const sql = `create table if not exists deals(
         deal_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, deal_name VARCHAR(255) NOT NULL, deal_stage VARCHAR(255) NOT NULL, amount INT NOT NULL,
-        currency VARCHAR(255) NOT NULL, close_date DATE NOT NULL, deal_owner VARCHAR(255) NOT NULL, deal_disc VARCHAR(255) NOT NULL, deal_source VARCHAR(255) NOT NULL,
+        currency VARCHAR(255) NOT NULL, close_date DATE NOT NULL, deal_owner VARCHAR(255) NOT NULL, deal_description VARCHAR(255) NOT NULL, deal_source VARCHAR(255) NOT NULL,
         country VARCHAR(255), associated_company VARCHAR(255), CONSTRAINT unique_deal UNIQUE (deal_name)
     );
     insert ignore into deals set ?`;

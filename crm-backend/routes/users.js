@@ -35,7 +35,7 @@ router.route('/logout').get((req,res,next)=>{
 })
 
 router.route('/login-success').get((req,res,next)=>{
-    res.render('success-login',{username:req.user.first_name});
+    res.send(req.user);
 })
 
 router.route('/login-failure').get((req,res,next)=>{

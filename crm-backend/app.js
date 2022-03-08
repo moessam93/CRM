@@ -9,6 +9,8 @@ const contactsRouter = require('./routes/contacts');
 const companiesRouter = require('./routes/companies');
 const dealsRouter = require('./routes/deals');
 const usersRouter = require('./routes/users');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 crmDB.connect(()=>{
@@ -24,7 +26,6 @@ app.use(bp.urlencoded({ extended: true }))
 app.use(express.static('./public'));
 app.set("view engine","ejs");
 
-//middleware
 app.use(session({
   key:'session_cookie_name',
   secret:'session_cookie_secret',
@@ -41,14 +42,17 @@ app.use(session({
   }
 }))
 
+
+app.use(cors({
+  origin:'http://localhost:3000',
+  credentials:true
+}))
+
+app.use(cookieParser('session_cookie_secret'));
+
 require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
-
-// app.use((req,res,next)=>{
-//   console.log(req.user);
-//   next();
-// })
 
 //routes
 app.use('/',contactsRouter);
