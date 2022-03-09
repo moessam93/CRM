@@ -36,7 +36,12 @@ const DealView = () => {
                 country: country,
                 associated_company: associatedCompany
             }
-        }).then(() => history.push('/deals'));
+        }).then((res) => {
+            if (res.data == 'Not deal owner') {
+                alert("You are not authorized to edit or delete this deal")
+            }
+            history.push('/deals')
+        });
     }
 
     const deleteDeal = () => {
@@ -44,7 +49,12 @@ const DealView = () => {
             method: 'DELETE',
             url: `http://localhost:4000/api/deals/${location.state.deal_id}`,
             withCredentials: true,
-        }).then(() => history.push('/deals'));
+        }).then((res) => {
+            if (res.data == 'Not deal owner') {
+                alert("You are not authorized to edit or delete this deal")
+            }
+            history.push('/deals')
+        });
     }
 
     return (
