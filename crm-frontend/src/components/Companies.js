@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Company from './Company';
 import { useHistory } from 'react-router';
+import Axios from 'axios';
 
-const Companies = ({ companies }) => {
+const Companies = () => {
   let history = useHistory();
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(()=>{
+    const getCompanies = () => {
+      Axios({
+        method: 'GET',
+        withCredentials: true,
+        url: "http://localhost:4000/api/companies"
+      }).then((res) => {
+        if (res.data === 'Unauthorized') {
+          setCompanies([]);
+        }
+        else {
+          setCompanies(res.data);
+        }
+      })
+    }
+
+    getCompanies();
+  },[]);
 
   return (
     <div>
