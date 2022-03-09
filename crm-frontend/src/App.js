@@ -21,63 +21,18 @@ import CompanyView from './components/CompanyView';
 import DealView from './components/DealView';
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-  const [companies, setCompanies] = useState([]);
-  const [deals, setDeals] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    const getContacts = () => {
-      Axios({
-        method: 'GET',
-        withCredentials: true,
-        url: "http://localhost:4000/api/contacts"
-      }).then((res) => {
-        if (res.data === 'Unauthorized') {
-          setContacts([]);
-        }
-        else {
-          setContacts(res.data);
-          setIsLogged(true);
-        }
-      })
-    }
-
-    const getCompanies = () => {
-      Axios({
-        method: 'GET',
-        withCredentials: true,
-        url: "http://localhost:4000/api/companies"
-      }).then((res) => {
-        if (res.data === 'Unauthorized') {
-          setCompanies([]);
-        }
-        else {
-          setCompanies(res.data);
-          setIsLogged(true);
-        }
-      })
-    }
-
-    const getDeals = () => {
-      Axios({
-        method: "GET",
-        withCredentials: true,
-        url: "http://localhost:4000/api/deals",
-      }).then((res) => {
-        if (res.data === 'Unauthorized') {
-          setDeals([]);
-        }
-        else {
-          setDeals(res.data);
-          setIsLogged(true);
-        }
-      });
-    }
-
-    getContacts();
-    getCompanies();
-    getDeals();
+    Axios({
+      method:'GET',
+      url:'http://localhost:4000/login-success',
+      withCredentials:true
+    }).then((res)=>{
+      if (res.data){
+        setIsLogged(true);
+      }
+    })
   }, [])
 
   return (
@@ -89,13 +44,13 @@ function App() {
             <Home isLogged={isLogged} />
           </Route>
           <Route exact path="/contacts">
-            <Contacts contacts={contacts} />
+            <Contacts />
           </Route>
           <Route exact path="/companies">
-            <Companies companies={companies} />
+            <Companies />
           </Route>
           <Route exact path="/deals">
-            <Deals deals={deals} />
+            <Deals />
           </Route>
           <Route exact path="/tasks">
             <Tasks />
