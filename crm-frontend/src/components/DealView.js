@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { useHistory, useLocation } from 'react-router';
 import { Button } from 'react-bootstrap';
-import ContentEditable from 'react-contenteditable'
+import ContentEditable from 'react-contenteditable';
+import moment from 'moment';
 
 const DealView = () => {
     let history = useHistory();
@@ -13,7 +14,7 @@ const DealView = () => {
     const [dealOwner, setDealOwner] = useState(location.state.deal_owner);
     const [amount, setAmount] = useState(String(location.state.amount));
     const [currency, setCurrency] = useState(location.state.currency);
-    const [closeDate, setCloseDate] = useState(location.state.close_date.split("T")[0]);
+    const [closeDate, setCloseDate] = useState(location.state.close_date);
     const [dealDescription, setDealDescription] = useState(location.state.deal_description);
     const [dealSource, setDealSource] = useState(location.state.deal_source);
     const [country, setCountry] = useState(location.state.country);
@@ -92,12 +93,12 @@ const DealView = () => {
                             <ContentEditable html={currency} onChange={(e) => setCurrency(e.target.value)} />
                         </td>
                     </tr>
-                    {/* <tr>
+                    <tr>
                         <td>Close date</td>
                         <td>
-                            <input type="date" placeholder={closeDate} onChange={(e)=>setCloseDate(e.target.value)}/>
+                            <input type="text" placeholder={moment.utc(closeDate).format('MMM Do, YYYY')} onFocus={(e)=>e.target.type='date'} onChange={(e)=>setCloseDate(e.target.value)}/>
                         </td>
-                    </tr> */}
+                    </tr>
                     <tr>
                         <td>Deal description</td>
                         <td>
