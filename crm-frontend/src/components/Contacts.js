@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Contact from './Contact'
 import { useHistory } from 'react-router';
+import Axios from 'axios';
 
-const Contacts = ({ contacts }) => {
+const Contacts = () => {
     let history = useHistory();
-    
+    const [contacts,setContacts]=useState([]);
+
+    useEffect(()=>{
+        const getContacts = () => {
+            Axios({
+              method: 'GET',
+              withCredentials: true,
+              url: "http://localhost:4000/api/contacts"
+            }).then((res) => {
+              if (res.data === 'Unauthorized') {
+                setContacts([]);
+              }
+              else {
+                setContacts(res.data);
+              }
+            })
+          }
+          
+        getContacts();
+    },[]);
     return (
         <div>
             <div>
