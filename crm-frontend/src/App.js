@@ -80,26 +80,6 @@ function App() {
     getDeals();
   }, [])
 
-  // const fetchContacts = async () => {
-  //   const res = await fetch('http://localhost:4000/api/contacts');
-  //   const data = await res.json();
-  //   return data;
-  // };
-
-  // const fetchCompanies = async () => {
-  //   const res = await fetch('http://localhost:4000/api/companies');
-  //   const data = await res.json();
-  //   return data;
-  // }
-
-  // const fetchDeals = async () => {
-  //   Axios({
-  //     method: "GET",
-  //     withCredentials: true,
-  //     url: "http://localhost:4000/api/deals",
-  //   }).then((res) => setDeals(res));
-  // }
-
   return (
     <div className="App">
       <NavbarMain isLogged={isLogged} />
