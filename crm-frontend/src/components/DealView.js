@@ -31,7 +31,7 @@ const DealView = () => {
                 deal_owner: dealOwner,
                 amount: amount,
                 currency: currency,
-                close_date: closeDate,
+                close_date: moment.utc(closeDate).format('YYYY-MM-DD'),
                 deal_description: dealDescription,
                 deal_source: dealSource,
                 country: country,
