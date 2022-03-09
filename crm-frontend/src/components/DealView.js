@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Axios from 'axios'
+import React, { useState } from 'react';
+import Axios from 'axios';
 import { useHistory, useLocation } from 'react-router';
 import { Button } from 'react-bootstrap';
 import ContentEditable from 'react-contenteditable';
@@ -38,7 +38,7 @@ const DealView = () => {
                 associated_company: associatedCompany
             }
         }).then((res) => {
-            if (res.data == 'Not deal owner') {
+            if (res.data === 'Not deal owner') {
                 alert("You are not authorized to edit or delete this deal")
             }
             history.push('/deals')
@@ -51,7 +51,7 @@ const DealView = () => {
             url: `http://localhost:4000/api/deals/${location.state.deal_id}`,
             withCredentials: true,
         }).then((res) => {
-            if (res.data == 'Not deal owner') {
+            if (res.data === 'Not deal owner') {
                 alert("You are not authorized to edit or delete this deal")
             }
             history.push('/deals')
